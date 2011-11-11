@@ -4,6 +4,16 @@ class mysql::server::cron::backup {
         '' => '/var/backups/mysql',
         default => $mysql_backup_dir,
     }
+    
+    $mysql_cleanup_after = $mysql_cleanup_after ? {
+        '' => false,
+        default => $mysql_cleanup_after,
+    }
+    
+    $mysql_backup_s3 = $mysql_backup_s3 ? {
+        '' => false,
+        default => $mysql_backup_s3,
+    }
 
     case $mysql_manage_backup_dir {
       false: { info("We don't manage \$mysql_backup_dir ($mysql_backup_dir)") }
