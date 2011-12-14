@@ -3,7 +3,7 @@ class mysql::server {
     case $operatingsystem {
       gentoo: { include mysql::server::gentoo }
       centos: { include mysql::server::centos }
-      ubuntu: { include mysql::server::debian }
+      ubuntu: { include mysql::server::ubuntu }
       debian: { include mysql::server::debian }
       default: { include mysql::server::base }
     }

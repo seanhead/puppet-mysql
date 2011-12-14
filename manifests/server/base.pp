@@ -27,14 +27,6 @@ class mysql::server::base {
         owner => mysql, group => mysql, mode => 0755;
     }
 
-    file { 'mysql_ibdata1':
-        path => '/var/lib/mysql/data/ibdata1',
-        ensure => file,
-        require => Package['mysql-server'],
-        before => File['mysql_setmysqlpass.sh'],
-        owner => mysql, group => mysql, mode => 0660;
-    }
-
     case $mysql_rootpw {
         '': { fail("You need to define a mysql root password! Please set \$mysql_rootpw in your site.pp or host config") }
     }
